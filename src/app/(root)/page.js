@@ -2,6 +2,8 @@ import { usePlayListHandler } from "../_store";
 import Songs from "./_components/Songs";
 //import styles from "./page.module.css";
 
+export const runtime = "edge";
+
 export default async function Page({ searchParams }) {
   //const [playlist, setPlaylist] = useState([]);
   // const playListPanel = usePlayListHandler((state) => state.playListPanel);
