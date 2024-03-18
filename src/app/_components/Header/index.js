@@ -2,8 +2,12 @@
 
 import React, { useEffect } from "react";
 import { usePlayListHandler } from "@/app/_store";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const setPlayListPanel = usePlayListHandler(
     (state) => state.setPlayListPanel
   );
@@ -12,6 +16,10 @@ export default function Header() {
 
   const playListPanelHandler = () => {
     setPlayListPanel(!playListPanel);
+  };
+
+  const homeHandler = () => {
+    replace(pathname);
   };
 
   return (
@@ -51,7 +59,12 @@ export default function Header() {
         />
       </div>
        */}
-      <img src={"/brand/logo.svg"}></img>
+
+      <img
+        src={"/brand/logo.svg"}
+        onClick={homeHandler}
+        style={{ cursor: "pointer" }}
+      ></img>
     </header>
   );
 }
