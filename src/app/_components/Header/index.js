@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { usePlayListHandler } from "@/app/_store";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
   const pathname = usePathname();
@@ -59,6 +60,39 @@ export default function Header() {
         />
       </div>
        */}
+
+      <button
+        style={{
+          position: "absolute",
+          left: 1,
+          margin: "10px",
+          border: "none",
+          outline: "none",
+          padding: "10px",
+          background: "#FF0000",
+          borderRadius: "4px",
+          color: "#fff",
+          cursor: "pointer",
+        }}
+      >
+        <a
+          style={{
+            outline: "none",
+            border: "none",
+            textDecoration: "none",
+            color: "#fff",
+            cursor: "pointer",
+            backgroundColor: "#FF0000",
+            padding: "10px",
+            borderRadius: "4px",
+          }}
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.youtube.com/@FazeSound-FreeCinematicMusic?sub_confirmation=1"
+        >
+          Youtube
+        </a>
+      </button>
 
       <img
         src={"/brand/logo.svg"}
