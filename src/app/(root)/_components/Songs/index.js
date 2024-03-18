@@ -1,0 +1,60 @@
+import SearchSongBar from "../Search";
+import WaveVisualizer from "@/app/_components/WaveVisualizer";
+import SongTable from "../SongTable";
+import { Suspense } from "react";
+import SongsLoader from "@/app/_components/SkeletonLoaders/SongsLoader";
+import MiniLoader from "@/app/_components/Loaders/MiniLoader";
+
+export default async function Songs({ searchParams }) {
+  const { query, pagination } = searchParams;
+
+  return (
+    <>
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "70px", // Adjust marginTop to accommodate the header
+          }}
+        >
+          <div
+            style={{
+              justifyContent: "center",
+              background: "#515151",
+              width: "700px",
+              padding: "8px",
+            }}
+          >
+            <SearchSongBar />
+            <Suspense
+              fallback={
+                <div
+                  style={{
+                    position: "absolute",
+                    margin: "auto",
+                    left: 0,
+                    right: 0,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MiniLoader />
+                </div>
+              }
+              key={query}
+            >
+              <SongTable query={query} pagination={pagination} />
+            </Suspense>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
