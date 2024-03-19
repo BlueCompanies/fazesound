@@ -42,7 +42,9 @@ export default async function Songs({ searchParams }) {
                 borderRadius: "4px 4px 0px 0px",
               }}
             >
-              <p style={{ color: "#fff" }}>Just download and use it.</p>
+              <p style={{ color: "#fff" }}>
+                Just download and use it, new songs everyday.
+              </p>
             </div>
 
             <SearchSongBar />

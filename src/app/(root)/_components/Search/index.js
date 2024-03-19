@@ -44,6 +44,7 @@ export default function SearchSongBar() {
             padding: "5px",
             width: "100%",
             height: "100%",
+            borderRadius: "0px 0px 0px 4px",
           }}
           onChange={(e) => handleInputChange(e)}
           value={searchValue} // Use value instead of defaultValue
