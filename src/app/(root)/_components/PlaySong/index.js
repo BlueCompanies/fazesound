@@ -16,14 +16,15 @@ export default function PlaySong({ currentPlayedSongData }) {
     setIsHoveringCover(isHovering);
   };
 
-  const playSongHandler = () => {
+  const playSongHandler = (e) => {
+    e.preventDefault();
     const params = new URLSearchParams(searchParams);
 
     params.set("audio", currentPlayedSongData.audio);
     params.set("cover", currentPlayedSongData.cover);
     params.set("duration", currentPlayedSongData.duration);
     params.set("name", currentPlayedSongData.name);
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
     setIsPlaying(false);
   };
 
@@ -38,7 +39,7 @@ export default function PlaySong({ currentPlayedSongData }) {
         }}
         onMouseEnter={() => handleSongCoverInteraction(true)}
         onMouseLeave={() => handleSongCoverInteraction(false)}
-        onClick={playSongHandler}
+        onClick={(e) => playSongHandler(e)}
       >
         {searchParams.get("cover") === currentPlayedSongData.cover && (
           <>
