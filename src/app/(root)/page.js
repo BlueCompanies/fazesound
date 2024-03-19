@@ -94,8 +94,8 @@ export default async function Page({ searchParams }) {
           </span>
         </p>
         <p style={{ fontSize: "22px" }}>
-          We're aiming to make it increasingly easier for creators to implement
-          music in their creations.
+          We&apos;re aiming to make it increasingly easier for creators to
+          implement music in their creations.
         </p>
       </div>
 

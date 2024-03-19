@@ -19,7 +19,6 @@ export default function PlaySong({ currentPlayedSongData }) {
   const playSongHandler = (e) => {
     e.preventDefault();
     const params = new URLSearchParams(searchParams);
-
     params.set("audio", currentPlayedSongData.audio);
     params.set("cover", currentPlayedSongData.cover);
     params.set("duration", currentPlayedSongData.duration);
