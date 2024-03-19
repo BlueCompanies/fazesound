@@ -69,7 +69,7 @@ export default function Header() {
           border: "none",
           outline: "none",
           padding: "10px",
-          background: "#FF0000",
+          backgroundColor: "#000",
           borderRadius: "4px",
           color: "#fff",
           cursor: "pointer",
@@ -82,7 +82,6 @@ export default function Header() {
             textDecoration: "none",
             color: "#fff",
             cursor: "pointer",
-            backgroundColor: "#FF0000",
             padding: "10px",
             borderRadius: "4px",
           }}
