@@ -8,6 +8,7 @@ import DownloadSong from "@/app/(root)/_components/Tools/Download";
 import ShareSong from "@/app/(root)/_components/Tools/Share";
 import AddToPlayList from "@/app/(root)/_components/Tools/AddToPlayList";
 import styles from "./styles.module.css";
+import YoutubeChanel from "@/app/(root)/_components/Tools/YoutubeChannel";
 
 export default function MusicPlayer({ searchParams }) {
   const { setIsPlaying, isPlaying } = usePlaySong();
@@ -36,6 +37,7 @@ export default function MusicPlayer({ searchParams }) {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 99999999999,
+          borderTop: "1px solid #fff",
         }}
         className={styles.songPlayer}
       >
@@ -209,6 +211,11 @@ export default function MusicPlayer({ searchParams }) {
               alignItems: "center",
             }}
           >
+            <YoutubeChanel
+              youtubeLink={searchParams.get("ytLink")}
+              songName={searchParams.get("name")}
+            />
+
             <DownloadSong
               audioData={{
                 audioFile: searchParams.get("audio"),

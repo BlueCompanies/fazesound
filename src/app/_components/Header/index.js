@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { usePlayListHandler } from "@/app/_store";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { FaYoutube } from "react-icons/fa";
 
 export default function Header() {
   const pathname = usePathname();
@@ -61,37 +62,81 @@ export default function Header() {
       </div>
        */}
 
-      <button
+      <div
         style={{
           position: "absolute",
           left: 1,
           margin: "10px",
-          border: "none",
-          outline: "none",
-          padding: "10px",
-          backgroundColor: "#000",
-          borderRadius: "4px",
-          color: "#fff",
-          cursor: "pointer",
+          width: "350px",
+          display: "flex",
+          justifyContent: "space-around",
         }}
       >
-        <a
+        <button
           style={{
-            outline: "none",
             border: "none",
-            textDecoration: "none",
+            outline: "none",
+            backgroundColor: "#000",
+            borderRadius: "4px",
             color: "#fff",
             cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
             padding: "10px",
-            borderRadius: "4px",
           }}
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.youtube.com/@FazeSound-FreeCinematicMusic?sub_confirmation=1"
         >
-          Youtube
-        </a>
-      </button>
+          <FaYoutube style={{ fontSize: "21px", marginRight: "5px" }} />
+          <a
+            style={{
+              outline: "none",
+              border: "none",
+              textDecoration: "none",
+              color: "#fff",
+              cursor: "pointer",
+              borderRadius: "4px",
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@FazeSound-FreeCinematicMusic?sub_confirmation=1"
+          >
+            Cinematic music
+          </a>
+        </button>
+
+        <button
+          style={{
+            border: "none",
+            outline: "none",
+            backgroundColor: "#000",
+            borderRadius: "4px",
+            color: "#fff",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <FaYoutube style={{ fontSize: "21px", marginRight: "5px" }} />
+          <a
+            style={{
+              outline: "none",
+              border: "none",
+              textDecoration: "none",
+              color: "#fff",
+              cursor: "pointer",
+              borderRadius: "4px",
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@FazeSound-FreeElectronic-qv4wo?sub_confirmation=1"
+          >
+            Electronic music
+          </a>
+        </button>
+      </div>
 
       <img
         src={"/brand/logo.svg"}

@@ -4,6 +4,7 @@ import PlaySong from "../PlaySong";
 import AddToPlayList from "../Tools/AddToPlayList";
 import ShareSong from "../Tools/Share";
 import DownloadSong from "../Tools/Download";
+import YoutubeChanel from "../Tools/YoutubeChannel";
 
 export default async function SongTable({ query, pagination }) {
   const data = await fetchSongs(
@@ -31,6 +32,7 @@ export default async function SongTable({ query, pagination }) {
               audio: song.audioFile,
               cover: song.cover,
               duration: song.audioData.duration.minutes,
+              ytLink: song.youtubeLink,
             }}
           />
           <div
@@ -106,7 +108,7 @@ export default async function SongTable({ query, pagination }) {
               <div
                 style={{
                   height: "100%",
-                  width: "120px",
+                  width: "80px",
                   display: "flex",
                   flexDirection: "column", // Align tags in a column
                   color: "#dedede",
@@ -144,16 +146,29 @@ export default async function SongTable({ query, pagination }) {
                 ))}
               </div>
 
-              <DownloadSong
-                audioData={{
-                  audioFile: song.audioFile,
-                  songName: song.name,
+              <div
+                style={{
+                  display: "flex",
+                  minWidth: "100px",
+                  justifyContent: "space-between",
                 }}
-              />
+              >
+                <YoutubeChanel
+                  youtubeLink={song.youtubeLink}
+                  songName={song.name}
+                />
 
-              <ShareSong />
+                <DownloadSong
+                  audioData={{
+                    audioFile: song.audioFile,
+                    songName: song.name,
+                  }}
+                />
 
-              <AddToPlayList />
+                <ShareSong />
+
+                <AddToPlayList />
+              </div>
             </div>
           </div>
         </div>

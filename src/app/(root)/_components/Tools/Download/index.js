@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
+
 export default function DownloadSong({ audioData }) {
   const { audioFile, songName } = audioData || {};
+  const [showToolTip, setShowToolTip] = useState(false);
 
   const handleAudioDownload = async (audioFile, songName) => {
     try {
@@ -21,14 +24,39 @@ export default function DownloadSong({ audioData }) {
   };
 
   return (
-    <img
-      src={"/icons/download.svg"}
-      style={{
-        width: "30px",
-        cursor: "pointer",
-      }}
-      onClick={() => handleAudioDownload(audioFile, songName)}
-      alt="Download icon"
-    />
+    <div style={{ position: "relative", marginTop: "1px" }}>
+      {showToolTip && (
+        <div
+          style={{
+            position: "absolute",
+            background: "#fff",
+            marginTop: "-30px", // Adjust the marginTop to position the tooltip above the image
+            left: "50%", // Center the tooltip horizontally
+            transform: "translateX(-50%)", // Center the tooltip horizontally
+            width: "100px", // Set width as needed
+            textAlign: "center", // Center the text
+            borderRadius: "5px", // Add border radius for styling
+            fontSize: "14px",
+            padding: "4px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Download song
+        </div>
+      )}
+      <img
+        src={"/icons/download.svg"}
+        style={{
+          width: "30px",
+          cursor: "pointer",
+        }}
+        onClick={() => handleAudioDownload(audioFile, songName)}
+        alt="Download icon"
+        onMouseEnter={() => setShowToolTip(true)}
+        onMouseLeave={() => setShowToolTip(false)}
+      />
+    </div>
   );
 }

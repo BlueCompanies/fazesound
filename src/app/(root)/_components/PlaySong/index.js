@@ -23,6 +23,7 @@ export default function PlaySong({ currentPlayedSongData }) {
     params.set("cover", currentPlayedSongData.cover);
     params.set("duration", currentPlayedSongData.duration);
     params.set("name", currentPlayedSongData.name);
+    params.set("ytLink", currentPlayedSongData.ytLink);
     replace(`${pathname}?${params.toString()}`, { scroll: false });
     setIsPlaying(false);
   };
