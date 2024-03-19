@@ -22,6 +22,7 @@ export default async function Songs({ searchParams }) {
             display: "flex",
             justifyContent: "center",
             marginTop: "70px", // Adjust marginTop to accommodate the header
+            marginBottom: "100px",
           }}
         >
           <div
