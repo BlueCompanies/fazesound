@@ -32,6 +32,17 @@ export default async function Songs({ searchParams }) {
               padding: "8px",
             }}
           >
+            <div
+              style={{
+                background: "#292f33",
+                width: "fit-content",
+                padding: "6px",
+                borderRadius: "4px 4px 0px 0px",
+              }}
+            >
+              <p style={{ color: "#fff" }}>Just download and use it.</p>
+            </div>
+
             <SearchSongBar />
             <Suspense
               fallback={
