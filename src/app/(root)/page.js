@@ -68,6 +68,37 @@ export default async function Page({ searchParams }) {
       )}
        */}
 
+      <div
+        style={{
+          width: "100%",
+          background: "#fff",
+          height: "400px",
+          color: "#000",
+          marginTop: "70px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <p
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
+          <span style={{ fontSize: "55px" }}>Enjoy music completely free</span>{" "}
+          <span style={{ fontSize: "55px" }}>
+            without having to give attributions
+          </span>
+        </p>
+        <p style={{ fontSize: "22px" }}>
+          We're aiming to make it increasingly easier for creators to implement
+          music in their creations.
+        </p>
+      </div>
+
       {/* Main content */}
       <div style={{ width: "100%", background: "#515151", height: "100vh" }}>
         <Songs searchParams={searchParams} />
