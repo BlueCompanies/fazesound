@@ -100,7 +100,7 @@ export default async function Page({ searchParams }) {
       </div>
 
       {/* Main content */}
-      <div style={{ width: "100%", background: "#515151", height: "100vh" }}>
+      <div style={{ width: "100%", background: "#515151" }}>
         <Songs searchParams={searchParams} />
       </div>
     </>
