@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["pub-362047d2f8874dac982c73a32b4b5f1a.r2.dev"],
+    domains: ["fazestore.online"],
   },
   experimental: {
     appDir: true,

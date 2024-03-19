@@ -35,6 +35,7 @@ export default function MusicPlayer({ searchParams }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          zIndex: 99999999999,
         }}
         className={styles.songPlayer}
       >
@@ -127,11 +128,15 @@ export default function MusicPlayer({ searchParams }) {
               alignItems: "center",
             }}
           >
-            <Image
-              width={60}
-              height={60}
+            <img
               src={searchParams.get("cover")}
-              style={{ objectFit: "cover", borderRadius: "50%" }}
+              style={{
+                objectFit: "cover",
+                borderRadius: "50%",
+                width: "60px",
+                height: "60px",
+              }}
+              key={searchParams.get("cover")}
             />
           </div>
           <span

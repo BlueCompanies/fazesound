@@ -79,6 +79,7 @@ export default function WaveVisualizer({
           barGap={isMainSong ? 1 : 0}
           // And the bar radius
           barRadius={isMainSong ? 2 : 0}
+          interact={isMainSong ? true : false}
           url={audio}
           onReady={onReady}
           onAudioprocess={currentTimeAudioHandler}
