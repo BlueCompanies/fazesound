@@ -31,6 +31,7 @@ export default async function Songs({ searchParams }) {
               background: "#515151",
               width: "700px",
               padding: "8px",
+              minHeight: "700px",
             }}
           >
             <div
@@ -45,6 +46,7 @@ export default async function Songs({ searchParams }) {
             </div>
 
             <SearchSongBar />
+
             <Suspense
               fallback={
                 <div

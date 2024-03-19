@@ -23,7 +23,7 @@ export default function SearchSongBar() {
       params.delete("query");
     }
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
