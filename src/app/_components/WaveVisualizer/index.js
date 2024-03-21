@@ -16,7 +16,6 @@ export default function WaveVisualizer({
   const waveformRef = useRef(null);
   const [currentFormatedTime, setCurrentFormatedTime] = useState("00:00");
   const currentTimeAudioHandler = () => {
-    console.log("jiji: ", currentTime);
     if (waveSurfer.isPlaying()) {
       const currentTime = waveSurfer.getCurrentTime();
       const formattedTime = convertDurationToTime(currentTime);
@@ -62,7 +61,6 @@ export default function WaveVisualizer({
 
   useEffect(() => {
     if (audio && waveSurfer) {
-      console.log("pouta merida de vida: ", audioId);
       fetch(`https://fazestore.online/audiowaves/${audioId}-output.json`)
         .then((response) => {
           if (!response.ok) {
