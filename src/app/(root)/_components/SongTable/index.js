@@ -24,7 +24,6 @@ export default function SongTable({ query }) {
       const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
         data;
       setSongsQueryData({ totalSongsPerQuery, totalPages });
-      console.log(totalSongsPerPage);
       setSongs(totalSongsPerPage);
     };
 
