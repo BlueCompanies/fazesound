@@ -13,7 +13,7 @@ import { usePagination } from "@/app/_store";
 import { usePathname, useSearchParams } from "next/navigation";
 
 export default function SongTable({ query }) {
-  const { currentPage, setCurrentPage } = usePagination();
+  const { currentPage } = usePagination();
   const [songs, setSongs] = useState([]);
   const [songsQueryData, setSongsQueryData] = useState({});
 
@@ -24,6 +24,7 @@ export default function SongTable({ query }) {
       const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
         data;
       setSongsQueryData({ totalSongsPerQuery, totalPages });
+      console.log(totalSongsPerPage);
       setSongs(totalSongsPerPage);
     };
 
