@@ -27,7 +27,6 @@ export default function PlaySong({ currentPlayedSongData }) {
     params.set("name", currentPlayedSongData.name);
     params.set("ytLink", currentPlayedSongData.ytLink);
     params.set("audioId", currentPlayedSongData.audioId);
-    console.log(currentPlayedSongData);
     replace(`${pathname}?${params.toString()}`, { scroll: false });
     setIsPlaying(false);
   };
