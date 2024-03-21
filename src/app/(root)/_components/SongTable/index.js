@@ -1,3 +1,5 @@
+"use client";
+
 import WaveVisualizer from "@/app/_components/WaveVisualizer";
 import fetchSongs from "@/app/_lib/data";
 import PlaySong from "../PlaySong";
@@ -5,14 +7,32 @@ import AddToPlayList from "../Tools/AddToPlayList";
 import ShareSong from "../Tools/Share";
 import DownloadSong from "../Tools/Download";
 import YoutubeChanel from "../Tools/YoutubeChannel";
+import Pages from "../Pagination/Pages";
+import { useEffect, useState } from "react";
+import { usePagination } from "@/app/_store";
+import { usePathname, useSearchParams } from "next/navigation";
 
-export default async function SongTable({ query, pagination }) {
-  const data = await fetchSongs(
-    query === "" ? { currentPage: 1 } : { currentPage: 1, query }
-  );
-  const { songTotal, songs } = data;
+export default function SongTable({ query }) {
+  const { currentPage, setCurrentPage } = usePagination();
+  const [songs, setSongs] = useState([]);
+  const [songsQueryData, setSongsQueryData] = useState({});
+
+  useEffect(() => {
+    const getSongs = async () => {
+      const isQuery = query === "" || query === undefined ? "" : query;
+      const data = await fetchSongs({ currentPage, query: isQuery });
+      const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
+        data;
+      setSongsQueryData({ totalSongsPerQuery, totalPages });
+      setSongs(totalSongsPerPage);
+    };
+
+    getSongs();
+  }, [currentPage]);
+
   return (
     <>
+      <Pages songsQueryData={songsQueryData} />
       {songs.map((song, index) => (
         <div
           style={{
@@ -25,6 +45,7 @@ export default async function SongTable({ query, pagination }) {
             marginTop: "5px",
           }}
           key={song.audioFile}
+          id="container"
         >
           <PlaySong
             currentPlayedSongData={{
@@ -33,6 +54,7 @@ export default async function SongTable({ query, pagination }) {
               cover: song.cover,
               duration: song.audioData.duration.minutes,
               ytLink: song.youtubeLink,
+              audioId: song.audioId,
             }}
           />
           <div
@@ -52,12 +74,18 @@ export default async function SongTable({ query, pagination }) {
                 margin: "4px",
               }}
             >
-              <WaveVisualizer
-                width={240}
-                height={40}
-                songData={{ audio: song?.audioFile }}
-                isMainSong={false}
-              />
+              <div style={{ position: "relative" }}>
+                <WaveVisualizer
+                  width={240}
+                  height={40}
+                  songData={{
+                    audio: song?.audioFile,
+                    audioId: song?.audioId,
+                  }}
+                  isMainSong={false}
+                  key={song.audioFile}
+                />
+              </div>
               <div
                 style={{
                   width: "240px",

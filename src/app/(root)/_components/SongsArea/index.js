@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import SongsLoader from "@/app/_components/SkeletonLoaders/SongsLoader";
 import MiniLoader from "@/app/_components/Loaders/MiniLoader";
 
-export default async function Songs({ searchParams }) {
+export default async function SongsArea({ searchParams }) {
   const { query, pagination } = searchParams;
 
   return (

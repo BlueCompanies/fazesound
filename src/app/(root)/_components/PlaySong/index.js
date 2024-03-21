@@ -1,9 +1,10 @@
 "use client";
 
-import { usePlaySong } from "@/app/_store";
+import { useAudioData, usePlaySong } from "@/app/_store";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function PlaySong({ currentPlayedSongData }) {
   const [isHoveringCover, setIsHoveringCover] = useState(false);
@@ -11,6 +12,7 @@ export default function PlaySong({ currentPlayedSongData }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const { setCurrentAudioWave } = useAudioData();
 
   const handleSongCoverInteraction = (isHovering) => {
     setIsHoveringCover(isHovering);
@@ -24,6 +26,8 @@ export default function PlaySong({ currentPlayedSongData }) {
     params.set("duration", currentPlayedSongData.duration);
     params.set("name", currentPlayedSongData.name);
     params.set("ytLink", currentPlayedSongData.ytLink);
+    params.set("audioId", currentPlayedSongData.audioId);
+    console.log(currentPlayedSongData);
     replace(`${pathname}?${params.toString()}`, { scroll: false });
     setIsPlaying(false);
   };
@@ -41,26 +45,27 @@ export default function PlaySong({ currentPlayedSongData }) {
         onMouseLeave={() => handleSongCoverInteraction(false)}
         onClick={(e) => playSongHandler(e)}
       >
-        {searchParams.get("cover") === currentPlayedSongData.cover && (
-          <>
-            <img
-              src={"/icons/spinning-play.svg"}
-              width={100}
-              height={100}
-              className={styles.spinningImage}
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                marginLeft: "0",
-                objectFit: "cover",
-                borderRadius: "8px 0px 0px 8px",
-                cursor: "pointer",
-                opacity: 0.4,
-              }}
-            />
-          </>
-        )}
+        {searchParams.get("cover") &&
+          searchParams.get("cover") === currentPlayedSongData.cover && (
+            <>
+              <img
+                src={"/icons/spinning-play.svg"}
+                width={100}
+                height={100}
+                className={styles.spinningImage}
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                  marginLeft: "0",
+                  objectFit: "cover",
+                  borderRadius: "8px 0px 0px 8px",
+                  cursor: "pointer",
+                  opacity: 0.4,
+                }}
+              />
+            </>
+          )}
 
         {isHoveringCover && (
           <>
@@ -86,13 +91,11 @@ export default function PlaySong({ currentPlayedSongData }) {
           </>
         )}
         <>
-          <img
+          <Image
             src={currentPlayedSongData?.cover}
             width={100}
-            height={100}
+            height={90}
             style={{
-              width: "100%",
-              height: "100%",
               marginLeft: "0",
               objectFit: "cover",
               borderRadius: "8px 0px 0px 8px",

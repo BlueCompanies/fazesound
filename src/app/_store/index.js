@@ -12,3 +12,13 @@ export const usePlaySong = create((set) => ({
   setSongData: (data) => set({ songData: data }), // Update audioData with the provided data
   setIsPlaying: (value) => set({ isPlaying: value }),
 }));
+
+export const usePagination = create((set) => ({
+  currentPage: 1,
+  setCurrentPage: (value) => set({ currentPage: value }),
+}));
+
+export const useAudioData = create((set) => ({
+  audioWave: "",
+  setCurrentAudioWave: (value) => set({ audioWave: value }),
+}));

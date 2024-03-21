@@ -1,6 +1,6 @@
 "use client";
 
-import { usePlaySong } from "@/app/_store";
+import { useAudioData, usePlaySong } from "@/app/_store";
 import Image from "next/image";
 import { useState } from "react";
 import WaveVisualizer from "../WaveVisualizer";
@@ -176,7 +176,10 @@ export default function MusicPlayer({ searchParams }) {
           <WaveVisualizer
             width={500}
             height={70}
-            songData={{ audio: searchParams.get("audio") }}
+            songData={{
+              audio: searchParams.get("audio"),
+              audioId: searchParams.get("audioId"),
+            }}
             isPlaying={isPlaying}
             isMainSong={true}
             getCurrentSongTime={getCurrentSongTime}

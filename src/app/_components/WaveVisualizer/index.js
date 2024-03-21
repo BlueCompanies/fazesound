@@ -1,92 +1,113 @@
 "use client";
 
-import { usePlaySong } from "@/app/_store";
-import WavesurferPlayer from "@wavesurfer/react";
-import { useEffect, useState } from "react";
-import MiniLoader from "../Loaders/MiniLoader";
+import { useEffect, useRef, useState } from "react";
+import WaveSurfer from "wavesurfer.js";
 
 export default function WaveVisualizer({
   width,
   height,
   songData,
-  isPlaying,
   isMainSong,
+  isPlaying,
   getCurrentSongTime,
 }) {
-  const { audio } = songData || {};
-  const [wavesurfer, setWavesurfer] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const onReady = (ws) => {
-    setLoading(false);
-    setWavesurfer(ws);
-    const audioDuration = ws.getDuration();
-    const formattedTime = convertDurationToTime(audioDuration);
-    setAudioLength(formattedTime);
-  };
-
+  const { audio, audioId } = songData || {};
+  const [waveSurfer, setWaveSurfer] = useState(null);
+  const waveformRef = useRef(null);
+  const [currentFormatedTime, setCurrentFormatedTime] = useState("00:00");
   const currentTimeAudioHandler = () => {
-    if (wavesurfer.isPlaying()) {
-      const currentTime = wavesurfer.getCurrentTime();
+    console.log("jiji: ", currentTime);
+    if (waveSurfer.isPlaying()) {
+      const currentTime = waveSurfer.getCurrentTime();
       const formattedTime = convertDurationToTime(currentTime);
       getCurrentSongTime(formattedTime);
     }
   };
 
   const manualTimeAudioHandler = () => {
-    const currentTime = wavesurfer.getCurrentTime();
+    const currentTime = waveSurfer.getCurrentTime();
     const formattedTime = convertDurationToTime(currentTime);
     getCurrentSongTime(formattedTime);
   };
 
   useEffect(() => {
-    wavesurfer && wavesurfer.playPause();
-  }, [isPlaying]);
+    if (!audio) return;
 
-  // switchs loading to true when the audioFile has changed, then "onReady" set loading back to false when the audioFile has laoded.
-  useEffect(() => {
-    setLoading(true);
+    const wavesurfer = WaveSurfer.create({
+      container: waveformRef.current,
+      waveColor: "#7B7B7B", // Adjust color as needed
+      progressColor: "#dedede", // Adjust color as needed
+      barWidth: 0, // Adjust bar width as needed
+      barHeight: 0,
+      barGap: 0,
+      height,
+      width,
+      cursorWidth: 0,
+      cursorHeight: 0,
+      interact: isMainSong ? true : false,
+    });
+
+    setWaveSurfer(wavesurfer);
+
+    return () => {
+      if (wavesurfer) {
+        wavesurfer.destroy();
+      }
+    };
   }, [audio]);
 
+  useEffect(() => {
+    waveSurfer && waveSurfer.playPause();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (audio && waveSurfer) {
+      console.log("pouta merida de vida: ", audioId);
+      fetch(`https://fazestore.online/audiowaves/${audioId}-output.json`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+          }
+          return response.json();
+        })
+        .then((peaks) => {
+          if (waveSurfer) {
+            waveSurfer.load(audio, peaks.data);
+          }
+        })
+        .catch((e) => {
+          console.error("error", e);
+        });
+    }
+  }, [waveSurfer, audio]);
+
+  // sets the currentFormatedTime if formattedTime is different, so it updates the state
+  // then, in the second useEffect we call the function with the updated state, so we dont call it multiple times
+  useEffect(() => {
+    if (waveSurfer) {
+      const handleAudioProcess = (currentTime) => {
+        const formattedTime = convertDurationToTime(currentTime);
+        if (formattedTime !== currentFormatedTime) {
+          setCurrentFormatedTime(formattedTime);
+        }
+      };
+
+      waveSurfer.on("audioprocess", handleAudioProcess);
+
+      return () => {
+        waveSurfer.un("audioprocess", handleAudioProcess);
+      };
+    }
+  }, [waveSurfer, currentFormatedTime]);
+
+  useEffect(() => {
+    getCurrentSongTime && getCurrentSongTime(currentFormatedTime);
+  }, [currentFormatedTime]);
+
   return (
-    <>
-      <div style={{ width, height, position: "relative" }}>
-        {loading && (
-          <div
-            style={{
-              display: "flex",
-              height: "100%",
-              width: "100%",
-              position: "absolute",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <MiniLoader />
-          </div>
-        )}
-        <WavesurferPlayer
-          width={width}
-          height={height}
-          cursorColor={"#fff"}
-          waveColor={"#7B7B7B"}
-          progressColor={"#dedede"}
-          cursorWidth={isMainSong ? 2 : 0}
-          cursorHeight={isMainSong ? 1 : 0}
-          // Set a bar width
-          barWidth={isMainSong ? 2 : 0}
-          // Optionally, specify the spacing between bars
-          barGap={isMainSong ? 1 : 0}
-          // And the bar radius
-          barRadius={isMainSong ? 2 : 0}
-          interact={isMainSong ? true : false}
-          url={audio}
-          onReady={onReady}
-          onAudioprocess={currentTimeAudioHandler}
-          onClick={manualTimeAudioHandler}
-        />
-      </div>
-    </>
+    <div style={{ position: "relative", width, height }}>
+      <div ref={waveformRef} style={{ width: "100%", height: "100%" }} />
+    </div>
   );
 }
 

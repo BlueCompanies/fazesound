@@ -1,5 +1,5 @@
 import { usePlayListHandler } from "../_store";
-import Songs from "./_components/Songs";
+import Songs from "./_components/SongsArea";
 //import styles from "./page.module.css";
 
 export const runtime = "edge";

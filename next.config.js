@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["fazestore.online"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "fazestore.online",
+      },
+    ],
   },
+
   experimental: {
     appDir: true,
   },

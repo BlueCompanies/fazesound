@@ -4,7 +4,6 @@ import Header from "../_components/Header";
 import WavesurferPlayer from "@wavesurfer/react";
 import styles from "./styles.module.css";
 import WaveVisualizer from "../_components/WaveVisualizer";
-import { usePlaySong } from "../_store";
 import { useSearchParams } from "next/navigation";
 import AddToPlayList from "./_components/Tools/AddToPlayList";
 import DownloadSong from "./_components/Tools/Download";
