@@ -1,16 +1,9 @@
 "use client";
 
-import WaveVisualizer from "@/app/_components/WaveVisualizer";
 import fetchSongs from "@/app/_lib/data";
-import PlaySong from "../PlaySong";
-import AddToPlayList from "../Tools/AddToPlayList";
-import ShareSong from "../Tools/Share";
-import DownloadSong from "../Tools/Download";
-import YoutubeChanel from "../Tools/YoutubeChannel";
 import Pages from "../Pagination/Pages";
 import { useEffect, useState } from "react";
 import { usePagination } from "@/app/_store";
-import { usePathname, useSearchParams } from "next/navigation";
 import Song from "../Song";
 
 export default function SongTable({ query }) {
@@ -34,7 +27,12 @@ export default function SongTable({ query }) {
   return (
     <>
       <Pages songsQueryData={songsQueryData} />
-      {songs.length > 0 && songs.map((song, index) => <Song song={song} />)}
+      {songs.length > 0 &&
+        songs.map((song, index) => (
+          <div key={index}>
+            <Song song={song} />
+          </div>
+        ))}
     </>
   );
 }

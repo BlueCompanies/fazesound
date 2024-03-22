@@ -1,7 +1,6 @@
 "use client";
 
-import { useAudioData, usePlaySong } from "@/app/_store";
-import Image from "next/image";
+import { usePlaySong } from "@/app/_store";
 import { useEffect, useState } from "react";
 import WaveVisualizer from "../WaveVisualizer";
 import DownloadSong from "@/app/(root)/_components/Tools/Download";
