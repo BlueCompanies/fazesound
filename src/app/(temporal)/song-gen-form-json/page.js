@@ -5,11 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 export default function Page() {
   const [inputText, setInputText] = useState("");
   const [isValidated, setIsValidated] = useState(false);
-  const [id, setId] = useState();
+  const [id, setId] = useState("");
   const [jsonObj, setJsonObj] = useState({
-    audioFile: `https://fazestore.online/music/${id}`,
+    audioFile: "",
     cover: "",
     name: "",
+    youtubeLink: "",
+    audioId: "",
+    audioWave: "",
     genre: [],
     mood: [],
     date: { day: 1, month: 1, year: 2023 },
@@ -82,7 +85,15 @@ export default function Page() {
   };
 
   useEffect(() => {
-    setId(uuidv4());
+    const newId = uuidv4();
+    setId(newId);
+    setJsonObj((prevState) => ({
+      ...prevState,
+      audioFile: `https://fazestore.online/music/${newId}/audio.mp3`,
+      cover: `https://fazestore.online/music/${newId}/thumbnail.jpg`,
+      audioId: newId,
+      audioWave: `https://fazestore.online/audiowaves/${newId}-output.json`,
+    }));
   }, []);
 
   return (
@@ -108,6 +119,21 @@ export default function Page() {
             type="text"
             value={jsonObj.name}
             onChange={(e) => handleChange(e, "name")}
+          />
+          <input
+            type="text"
+            value={jsonObj.youtubeLink}
+            onChange={(e) => handleChange(e, "youtubeLink")}
+          />
+          <input
+            type="text"
+            value={jsonObj.audioId}
+            onChange={(e) => handleChange(e, "audioId")}
+          />
+          <input
+            type="text"
+            value={jsonObj.audioWave}
+            onChange={(e) => handleChange(e, "audioWave")}
           />
           <input
             type="text"

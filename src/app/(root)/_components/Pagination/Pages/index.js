@@ -13,7 +13,7 @@ export default function Pages({ songsQueryData, songs }) {
   };
 
   useEffect(() => {
-    let totalSongsPerPage = 5; // Define the limit of songs per page
+    let totalSongsPerPage = 15; // Define the limit of songs per page
     let totalSongs = songsQueryData.totalSongsPerQuery;
     let totalPages = Math.ceil(totalSongs / totalSongsPerPage);
 
