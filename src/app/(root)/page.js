@@ -1,6 +1,6 @@
 import { usePlayListHandler } from "../_store";
 import Songs from "./_components/SongsArea";
-//import styles from "./page.module.css";
+import styles from "./styles.module.css";
 
 export const runtime = "edge";
 
@@ -88,12 +88,17 @@ export default async function Page({ searchParams }) {
             textAlign: "center",
           }}
         >
-          <span style={{ fontSize: "55px" }}>Enjoy music completely free</span>{" "}
-          <span style={{ fontSize: "55px" }}>
+          <span className={styles.presentationTextTop}>
+            Enjoy music completely free
+          </span>{" "}
+          <span className={styles.presentationTextTop}>
             without having to give attributions
           </span>
         </p>
-        <p style={{ fontSize: "22px" }}>
+        <p
+          style={{ fontSize: "22px" }}
+          className={styles.presentationTextBottom}
+        >
           We&apos;re aiming to make it increasingly easier for creators to
           implement music in their creations.
         </p>

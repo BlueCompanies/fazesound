@@ -2,23 +2,59 @@
 
 import { useAudioData, usePlaySong } from "@/app/_store";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import WaveVisualizer from "../WaveVisualizer";
 import DownloadSong from "@/app/(root)/_components/Tools/Download";
 import ShareSong from "@/app/(root)/_components/Tools/Share";
 import AddToPlayList from "@/app/(root)/_components/Tools/AddToPlayList";
 import styles from "./styles.module.css";
 import YoutubeChanel from "@/app/(root)/_components/Tools/YoutubeChannel";
+import { TbGridDots } from "react-icons/tb";
 
 export default function MusicPlayer({ searchParams }) {
   const { setIsPlaying, isPlaying } = usePlaySong();
   const [currentAudioTime, setCurrentAudioTime] = useState(0);
+  const [songTools, setSongTools] = useState(false);
+
+  const [audioSpectrumWidth, setAudioSpectrumWidth] = useState(
+    typeof window !== "undefined" ? null : 0
+  );
+
+  useEffect(() => {
+    // Update the screenWidth state when the window is resized
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        console.log(window.innerWidth);
+        if (window.innerWidth <= 645) {
+          setAudioSpectrumWidth(190);
+        }
+        if (window.innerWidth <= 645) {
+          setAudioSpectrumWidth(180);
+        }
+        if (window.innerWidth > 645) {
+          setAudioSpectrumWidth(240);
+        }
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        // Clean up the event listener on unmount
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
   const playSongHandler = () => {
     setIsPlaying(!isPlaying);
   };
 
   const getCurrentSongTime = (currentTime) => {
     setCurrentAudioTime(currentTime);
+  };
+
+  const songToolsHandler = () => {
+    setSongTools(!songTools);
   };
 
   return (
@@ -118,18 +154,12 @@ export default function MusicPlayer({ searchParams }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: "300px", // Initial width
+
             justifyContent: "flex-start", // Align items to the left
             margin: "10px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <div className={styles.songCover}>
             <img
               src={searchParams.get("cover")}
               style={{
@@ -173,18 +203,21 @@ export default function MusicPlayer({ searchParams }) {
           >
             {currentAudioTime === 0 ? "00:00" : currentAudioTime}
           </span>
-          <WaveVisualizer
-            width={500}
-            height={70}
-            songData={{
-              audio: searchParams.get("audio"),
-              audioId: searchParams.get("audioId"),
-            }}
-            isPlaying={isPlaying}
-            isMainSong={true}
-            getCurrentSongTime={getCurrentSongTime}
-          />
+          <div className={styles.audioSpectrum}>
+            <WaveVisualizer
+              width={audioSpectrumWidth || 240}
+              height={60}
+              songData={{
+                audio: searchParams.get("audio"),
+                audioId: searchParams.get("audioId"),
+              }}
+              isPlaying={isPlaying}
+              isMainSong={true}
+              getCurrentSongTime={getCurrentSongTime}
+            />
+          </div>
 
+          <span className={styles.audioSeparator}>/</span>
           <span
             style={{
               color: "#fff",
@@ -204,16 +237,10 @@ export default function MusicPlayer({ searchParams }) {
             height: "100%",
             justifyContent: "space-between",
             margin: "10px",
+            alignItems: "center",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-            }}
-          >
+          <div className={styles.mainSongTools}>
             <YoutubeChanel
               youtubeLink={searchParams.get("ytLink")}
               songName={searchParams.get("name")}
@@ -229,6 +256,50 @@ export default function MusicPlayer({ searchParams }) {
             <ShareSong audioFile={searchParams.get("audio")} />
 
             <AddToPlayList />
+          </div>
+
+          <div className={styles.mobileGridDots} onClick={songToolsHandler}>
+            <TbGridDots style={{ fontSize: "30px" }} />
+            {songTools && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-60px", // Adjust as needed to position the tooltip above the icon
+                  left: "-90px",
+                  background: "#fff",
+                  width: "100px",
+                  transform: "translateX(-60%)",
+                  transform: "translateY(-70%)",
+                  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Add a shadow for better visibility
+                  zIndex: "999", // Ensure the tooltip appears above other elements
+                  padding: "10px",
+                  borderRadius: "5px",
+                }}
+              >
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ border: "1px solid #dedede" }}>
+                    <YoutubeChanel
+                      youtubeLink={searchParams.get("ytLink")}
+                      songName={searchParams.get("name")}
+                    />
+                  </div>
+                  <div style={{ border: "1px solid #dedede" }}>
+                    <DownloadSong
+                      audioData={{
+                        audioFile: searchParams.get("audio"),
+                        songName: searchParams.get("name"),
+                      }}
+                    />
+                  </div>
+                  <div style={{ border: "1px solid #dedede" }}>
+                    <ShareSong audioFile={searchParams.get("audio")} />
+                  </div>
+                  <div style={{ border: "1px solid #dedede" }}>
+                    <AddToPlayList />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

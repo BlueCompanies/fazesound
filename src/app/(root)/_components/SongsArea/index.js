@@ -29,9 +29,7 @@ export default async function SongsArea({ searchParams }) {
             style={{
               justifyContent: "center",
               background: "#515151",
-              width: "700px",
               padding: "8px",
-              minHeight: "700px",
             }}
           >
             <div

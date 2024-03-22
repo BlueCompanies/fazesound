@@ -1,4 +1,7 @@
 
+.presentationTextTop{
+  font-size: 55px;
+}
 
 @media screen and (max-width: 1500px) {
     .songName {
@@ -15,6 +18,18 @@
   @media screen and (max-width: 1000px) {
     .songName {
       width: 70px; /* Adjusted width for smaller screens */
+    }
+  }
+
+  @media screen and (max-width: 393px) {
+    .presentationTextBottom{
+      font-size: 10px;
+    }
+
+    .presentationTextTop{
+      font-size: 30px;
+      background-color: #292F33;
+      color: #fff;
     }
   }
 

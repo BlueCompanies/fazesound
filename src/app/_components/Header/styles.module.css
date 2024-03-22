@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  align-items: center; /* Center items along the cross axis */
+  padding: 0 20px; /* Add padding to create space between items */
+}
+
+.mobileYtBtns {
+  display: none;
+}
+
+.desktopYtBtns {
+  width: 350px;
+  display: flex;
+  position: absolute;
+  left: 0;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 930px) {
+  .desktopYtBtns {
+      display: none;
+  }
+
+  .mobileYtBtns {
+      width: 350px;
+      display: flex;
+      position: absolute;
+      left: 0;
+      height: 70px;
+      align-items: center;
+  }
+}
