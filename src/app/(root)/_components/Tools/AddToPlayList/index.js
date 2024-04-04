@@ -30,7 +30,7 @@ export default function AddToPlayList() {
             width: "30px",
             cursor: "pointer",
           }}
-          src="icons/plus.svg"
+          src="/icons/plus.svg"
           alt="plus icon"
           onMouseEnter={() => setShowToolTip(true)}
           onMouseLeave={() => setShowToolTip(false)}

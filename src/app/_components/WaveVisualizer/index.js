@@ -36,9 +36,9 @@ export default function WaveVisualizer({
       container: waveformRef.current,
       waveColor: "#7B7B7B", // Adjust color as needed
       progressColor: "#dedede", // Adjust color as needed
-      barWidth: 0, // Adjust bar width as needed
+      barWidth: 1, // Adjust bar width as needed
       barHeight: 0,
-      barGap: 0,
+      barGap: 1,
       height,
       width,
       cursorWidth: 0,
@@ -91,6 +91,10 @@ export default function WaveVisualizer({
       };
 
       waveSurfer.on("audioprocess", handleAudioProcess);
+      waveSurfer.on("timeupdate", (e) => {
+        const formattedTime = convertDurationToTime(e);
+        if (formattedTime) setCurrentFormatedTime(formattedTime);
+      });
 
       return () => {
         waveSurfer.un("audioprocess", handleAudioProcess);
@@ -102,11 +106,7 @@ export default function WaveVisualizer({
     getCurrentSongTime && getCurrentSongTime(currentFormatedTime);
   }, [currentFormatedTime]);
 
-  return (
-    <div style={{ position: "relative", width, height }}>
-      <div ref={waveformRef} style={{ width: "100%", height: "100%" }} />
-    </div>
-  );
+  return <div ref={waveformRef} style={{ width: "100%", height: "100%" }} />;
 }
 
 function convertDurationToTime(duration) {

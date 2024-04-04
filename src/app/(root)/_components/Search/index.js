@@ -45,6 +45,10 @@ export default function SearchSongBar() {
           flexDirection: "row-reverse",
           justifyContent: "center",
           alignItems: "center",
+          width: "61%",
+          marginBottom: "15px",
+          border: "1px solid #dedede",
+          borderRadius: "0px 6px 6px 0px",
         }}
       >
         <form
@@ -61,7 +65,7 @@ export default function SearchSongBar() {
             style={{
               border: "none",
               outline: "none",
-              padding: "5px",
+              padding: "12px",
               width: "100%",
               height: "100%",
             }}
@@ -74,7 +78,7 @@ export default function SearchSongBar() {
             style={{
               border: "none",
               outline: "none",
-              padding: "5px",
+              padding: "12px",
               cursor: "pointer",
               backgroundColor: "#292F33",
               color: "#fff",
@@ -103,12 +107,12 @@ export default function SearchSongBar() {
                   outline: "none",
                   backgroundColor: "#fff",
                   color: "red",
-                  padding: "5px",
+                  padding: "10px",
                   cursor: "pointer",
                   height: "100%",
                 }}
               >
-                <IoIosCloseCircle style={{ fontSize: "12px" }} />
+                <IoIosCloseCircle style={{ fontSize: "16px" }} />
               </button>
             )
           ) : (
@@ -118,12 +122,12 @@ export default function SearchSongBar() {
                 outline: "none",
                 backgroundColor: "#fff",
                 color: "#000",
-                padding: "5px",
+                padding: "10px",
                 cursor: "pointer",
                 height: "100%",
               }}
             >
-              <FaMusic style={{ fontSize: "12px" }} />
+              <FaMusic style={{ fontSize: "16px" }} />
             </button>
           )}
         </div>

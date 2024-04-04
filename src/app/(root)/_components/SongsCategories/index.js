@@ -4,12 +4,31 @@ import SongTable from "../SongTable";
 import { Suspense } from "react";
 import SongsLoader from "@/app/_components/SkeletonLoaders/SongsLoader";
 import MiniLoader from "@/app/_components/Loaders/MiniLoader";
+import SongCategory from "../SongCategory";
 
-export default async function SongsArea({ searchParams }) {
+export default async function SongsCategories({ searchParams }) {
   const { query, pagination } = searchParams;
 
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "100px",
+          background: "#515151",
+          height: "100vh",
+        }}
+      >
+        <SongCategory
+          categoryName={"Cinematic"}
+          categoryIcon={"/icons/categories/cinematic.webp"}
+          headerColor={"#272727"}
+        />
+        <SongCategory categoryName={"Action"} />
+        <SongCategory categoryName={"Electronic"} />
+      </div>
+      {/*
       <div
         style={{
           position: "relative",
@@ -69,6 +88,7 @@ export default async function SongsArea({ searchParams }) {
           </div>
         </div>
       </div>
+               */}
     </>
   );
 }

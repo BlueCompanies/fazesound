@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Header from "../_components/Header";
 import WavesurferPlayer from "@wavesurfer/react";
 import styles from "./styles.module.css";
 import WaveVisualizer from "../_components/WaveVisualizer";
@@ -9,6 +8,7 @@ import AddToPlayList from "./_components/Tools/AddToPlayList";
 import DownloadSong from "./_components/Tools/Download";
 import ShareSong from "./_components/Tools/Share";
 import MusicPlayer from "../_components/MusicPlayer";
+import { useCurrentSong } from "../_store";
 
 export default function RootLayout({ children }) {
   const [wavesurfer, setWavesurfer] = useState(null);
@@ -45,11 +45,7 @@ export default function RootLayout({ children }) {
 
   return (
     <>
-      <Header />
       <main>{children}</main>
-      {searchParams.get("audio") !== null && (
-        <MusicPlayer searchParams={searchParams} />
-      )}
     </>
   );
 }

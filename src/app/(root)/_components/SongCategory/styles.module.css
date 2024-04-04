@@ -1,0 +1,34 @@
+.songCategoryContainer {
+    cursor: pointer;
+  }
+  
+  .overlay {
+    background-color: #0000008b; /* Red with 50% opacity */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.4s ease-in-out; /* Smooth transition */
+    z-index: 99999999999;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .overlayText {
+    color: white;
+    font-size: 19px;
+  }
+  
+  .songCategoryContainer:hover .overlay {
+    opacity: 1.5; /* Show overlay on hover */
+  }
+  
+
+  @media screen and (max-width: 900px) {
+   .songCategoryContainer{
+    width: 100px;
+    height: 100px;
+   }
+  }

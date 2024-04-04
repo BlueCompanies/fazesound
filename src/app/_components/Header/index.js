@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   const homeHandler = () => {
-    replace(pathname);
+    replace("/");
   };
 
   const openYtChannels = () => {

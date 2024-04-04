@@ -8,8 +8,6 @@ export const usePlayListHandler = create((set) => ({
 
 export const usePlaySong = create((set) => ({
   isPlaying: false,
-  songData: {}, // Initialize audioData as an empty object
-  setSongData: (data) => set({ songData: data }), // Update audioData with the provided data
   setIsPlaying: (value) => set({ isPlaying: value }),
 }));
 
@@ -21,4 +19,9 @@ export const usePagination = create((set) => ({
 export const useAudioData = create((set) => ({
   audioWave: "",
   setCurrentAudioWave: (value) => set({ audioWave: value }),
+}));
+
+export const useCurrentSong = create((set) => ({
+  currentSong: {}, // Changed 'song' to 'currentSong'
+  setCurrentSong: (value) => set({ currentSong: value }), // Set 'currentSong' to the provided value
 }));

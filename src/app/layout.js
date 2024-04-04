@@ -1,5 +1,7 @@
-import Header from "./_components/Header";
 import "./globals.css";
+import Header from "./_components/Header";
+import MusicPlayer from "./_components/MusicPlayer";
+import { useCurrentSong } from "./_store";
 
 export const metadata = {
   title: "FazeSound",
@@ -16,7 +18,12 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+
+        <MusicPlayer />
+      </body>
     </html>
   );
 }

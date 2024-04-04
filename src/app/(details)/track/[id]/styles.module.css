@@ -1,0 +1,51 @@
+.genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #8C52FF;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 5px;
+    color: #8C52FF;
+    text-decoration: none;
+  }
+  
+  .genre:hover{
+    background-color: #8C52FF;
+    color: #fff;
+  }
+
+  .songTools {
+    display: flex;
+    width: 10%;
+    justify-content: space-around;
+    background: #292F33;
+    border-radius: 6px 0px 0px 6px;
+    padding: 5px;
+  }
+
+  .audioSpectrumContainer{
+    width: 100%;
+  }
+
+  .separator{
+    display: none;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .songTools {
+      width: 40%; /* Adjusted width for smaller screens */
+    }
+  }
+
+  @media screen and (max-width: 840px) {
+    .audioSpectrumContainer {
+      display: none;
+    }
+
+    .separator{
+      display: block;
+    }
+  }
+  

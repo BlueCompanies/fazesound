@@ -32,7 +32,7 @@ export default function Pages({ songsQueryData, songs }) {
   }, [songsQueryData]);
 
   return (
-    <div style={{ color: "#fff" }}>
+    <div style={{ color: "#fff", marginTop: "15px" }}>
       <div style={{ display: "flex" }}>
         {pageNumbers.map((page, index) => (
           <div
@@ -41,13 +41,14 @@ export default function Pages({ songsQueryData, songs }) {
               width: "20px",
               padding: "10px",
               background: currentPage === page ? "#fff" : "#292f33",
+              border: currentPage === page ? "1px solid #292f33" : "#292f33",
               color: currentPage === page ? "#292f33" : "#fff",
               display: "flex",
               justifyContent: "center",
               borderRadius:
                 index === pageNumbers.length - 1
                   ? "0px 0px 4px 0px"
-                  : pageNumbers.length === 0 && "p4x",
+                  : pageNumbers.length === 0 && "4px",
               cursor: "pointer",
             }}
             onClick={() => manualPaginationHandler(page)}

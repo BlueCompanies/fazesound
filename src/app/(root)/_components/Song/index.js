@@ -1,29 +1,34 @@
 "use client";
 
 import WaveVisualizer from "@/app/_components/WaveVisualizer";
-import PlaySong from "../PlaySong";
+import SongCover from "../SongCover";
 import { useEffect, useState } from "react";
 import YoutubeChanel from "../Tools/YoutubeChannel";
 import DownloadSong from "../Tools/Download";
 import ShareSong from "../Tools/Share";
 import AddToPlayList from "../Tools/AddToPlayList";
 import styles from "./styles.module.css";
+import { TbGridDots } from "react-icons/tb";
+import Link from "next/link";
 
 export default function Song({ song }) {
   const [audioSpectrumWidth, setAudioSpectrumWidth] = useState(
     typeof window !== "undefined" ? null : 0
   );
+  const [songTools, setSongTools] = useState(false);
 
   useEffect(() => {
     // Update the screenWidth state when the window is resized
     if (typeof window !== "undefined") {
       const handleResize = () => {
-        console.log(window.innerWidth);
         if (window.innerWidth <= 645) {
           setAudioSpectrumWidth(180);
         }
         if (window.innerWidth > 645) {
           setAudioSpectrumWidth(240);
+        }
+        if (window.innerWidth > 1190) {
+          setAudioSpectrumWidth(200);
         }
       };
 
@@ -40,20 +45,15 @@ export default function Song({ song }) {
     console.log(audioSpectrumWidth);
   }, [audioSpectrumWidth]);
 
+  const songToolsHandler = () => {
+    setSongTools(!songTools);
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        background: "#292F33",
-        height: "90px",
-        borderRadius: "8px",
-        marginTop: "5px",
-      }}
-      id="container"
-      className={styles.songContainer}
-    >
-      <PlaySong
+    <div id="container" className={styles.songContainer}>
+      <SongCover
+        height={"70px"}
+        width={"70px"}
         currentPlayedSongData={{
           name: song.name,
           audio: song.audioFile,
@@ -71,22 +71,31 @@ export default function Song({ song }) {
           padding: "10px",
           width: "100%",
           height: "100%",
+          cursor: "pointer",
+          textDecoration: "none",
         }}
+        href={`/track/${song.audioId}`}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            margin: "4px",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{ position: "relative" }}
-            className={styles.audioSpectrum}
+        <div className={styles.songNameAndArtist}>
+          <Link href={`/track/${song.audioId}`} className={styles.songNameText}>
+            {song.name}
+          </Link>
+          <p
+            style={{
+              fontSize: "10px",
+              color: "#dedede",
+              width: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
           >
+            {song.artist}
+          </p>
+        </div>
+        <div className={styles.audioSpectrum}>
+          <div style={{ position: "relative" }}>
             <WaveVisualizer
-              width={audioSpectrumWidth || 240}
+              width={"100%"}
               height={40}
               songData={{
                 audio: song?.audioFile,
@@ -96,43 +105,19 @@ export default function Song({ song }) {
               key={song.audioFile}
             />
           </div>
-          <div
-            style={{
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-            <p
-              style={{
-                color: "#dedede",
-                margin: "0",
-                width: "100%",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                marginTop: "5px",
-                fontSize: "13px",
-              }}
-            >
-              {song.name}
-            </p>
-          </div>
         </div>
 
-        <div style={{}} className={styles.sideRightTools}>
-          <div
+        <div className={styles.songLengthAndBPM}>
+          <span
             style={{
-              display: "flex",
-              flexDirection: "column",
-              color: "#dedede",
               fontSize: "12px",
-              alignItems: "center",
-              alignContent: "center",
             }}
           >
-            <span>{song.audioData.duration.minutes}</span>
-            <span>{song.audioData.bpm} BPM</span>
-          </div>
+            {song.audioData.duration.minutes}
+          </span>
+          <span className={styles.songBPM}>{song.audioData.bpm} BPM</span>
+        </div>
+        <div className={styles.sideRightTools}>
           <div
             style={{
               height: "100%",
@@ -145,17 +130,10 @@ export default function Song({ song }) {
             }}
           >
             {song.genre.map((genre, index) => (
-              <div
-                style={{
-                  flex: "1",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  margin: "4px",
-                }}
-                key={genre + index}
-              >
-                <span>{genre}</span>
+              <div key={genre + index} style={{ marginTop: "5px" }}>
+                <Link href={`/genre/${genre}`} className={styles.genre}>
+                  {genre}
+                </Link>
               </div>
             ))}
             {song.mood.map((mood, index) => (
@@ -174,7 +152,7 @@ export default function Song({ song }) {
             ))}
           </div>
 
-          <div className={styles.songTools}>
+          <div className={styles.songDesktopTools}>
             <YoutubeChanel
               youtubeLink={song.youtubeLink}
               songName={song.name}
@@ -191,6 +169,46 @@ export default function Song({ song }) {
 
             <AddToPlayList />
           </div>
+        </div>
+        <div className={styles.mobileGridDots} onClick={songToolsHandler}>
+          {songTools && (
+            <div
+              style={{
+                position: "absolute",
+                display: "flex",
+                background: "#fff",
+                transform: "translate(-60px, -60px)",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.6)", // Add a shadow for better visibility
+                zIndex: "999", // Ensure the tooltip appears above other elements
+                padding: "10px",
+                borderRadius: "5px",
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ border: "1px solid #dedede" }}>
+                  <YoutubeChanel
+                    youtubeLink={song.youtubeLink}
+                    songName={song.name}
+                  />
+                </div>
+                <div style={{ border: "1px solid #dedede" }}>
+                  <DownloadSong
+                    audioData={{
+                      audioFile: song.audio,
+                      songName: song.name,
+                    }}
+                  />
+                </div>
+                <div style={{ border: "1px solid #dedede" }}>
+                  <ShareSong audioFile={song.audio} />
+                </div>
+                <div style={{ border: "1px solid #dedede" }}>
+                  <AddToPlayList />
+                </div>
+              </div>
+            </div>
+          )}
+          <TbGridDots style={{ fontSize: "30px", color: "#fff" }} />
         </div>
       </div>
     </div>

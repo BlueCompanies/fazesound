@@ -1,0 +1,22 @@
+.spinningImage {
+    animation: spin 12s linear infinite;
+  }
+  
+  .cover {
+    width: 70px;
+    height: 70px;
+    transition: border-radius 0.3s ease; /* Adding transition property */
+}
+
+.round {
+    border-radius: 50%; /* Apply rounded border radius */
+}
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

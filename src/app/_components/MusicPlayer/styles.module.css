@@ -8,13 +8,13 @@
 
 .mainSongTools{
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
 .audioSpectrum{
   display: block;
+  width: 100%;
 }
 
 .songCover{
@@ -32,7 +32,21 @@
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px){
+  .audioSpectrum{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 515px){
+  .audioSpectrum{
+    width: 50%;
+  }
+
+}
+
+
+@media screen and (max-width: 1100px) {
   .mainSongTools {
     display: none;
   }
@@ -42,12 +56,12 @@
   }
 
   .mobileGridDots{
-    display: block;
-    position: absolute;
     color: #fff;
-    right: 0;
-    margin-right:40px;
-    cursor: pointer
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 }
 
@@ -65,7 +79,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: red;
   }
 
   .audioSpectrum{

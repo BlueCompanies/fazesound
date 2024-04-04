@@ -1,12 +1,54 @@
 .songContainer{
     width: 100%;
+    display: flex;
+    align-items: center;
+    background: #292F33;
+    height: 70px;
+    border-radius: 4px;
+    margin: 5px;
+    justify-content: center;
 }
 
-.songTools{
+.songContainer:hover{
+    box-shadow: 1px 1px 3px #454545;
+}
+
+.songNameText {
+    color: #dedede; /* Removed quotes around color value */
+    width: 100%; /* Removed quotes around width value */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Changed textOverflow to text-overflow */
+    font-size: 16px; /* Changed fontSize to font-size */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.songNameText:hover {
+    text-decoration: underline; /* Adds a dashed line underneath the text */
+}
+
+
+.songDesktopTools{
     display: flex;
     min-width: 100px;
     justify-content: space-between;
 }
+
+.genre {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 4px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+
+.genre:hover {
+    text-decoration: underline;
+}
+
 
 .sideRightTools{
     width: 100%;
@@ -18,15 +60,71 @@
 }
 
 .audioSpectrum{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    width: 100%;
+}
+
+.songNameAndArtist{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 320px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.songBPM{
+    font-size: 12px;
+}
+
+.mobileGridDots{
+    display: none;
+    margin-right: 40px;
+   }
+
+.songLengthAndBPM{
+    display: flex;
+    flex-direction: column;
+    color: #dedede;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    width: 35%;
+}
+
+
+
+@media screen and (max-width: 1140px) {
+    .songNameAndArtist{
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 915px) {
+   .songDesktopTools{
+    display: none;
+   }
+
+   .mobileGridDots{
     display: block;
+   }
+}
+
+@media screen and (max-width: 750px) {
+   .audioSpectrum{
+    display: none;
+   }
 }
 
 @media screen and (max-width: 660px) {
-    .songContainer{
-        width: 360px;
-    }
 
-    .songTools{
+    .songDesktopTools{
         display: none;
     }
 
@@ -36,30 +134,24 @@
 }
 
 @media screen and (max-width: 645px) {
-    .songContainer{
-        width: 360px;
-    }
-
-    .songTools{
+    .songDesktopTools{
         display: none;
     }
 
     .sideRightTools{
         display: none;
     }
-}
-
-
-@media screen and (max-width: 530px) {
-  
+    
+    .songLengthAndBPM{
+        display: flex;
+        width: 100%;
+        
+    }
 }
 
 @media screen and (max-width: 280px) {
-    .songContainer{
-        width: 270px;
-    }
 
-    .songTools{
+    .songDesktopTools{
         display: none;
     }
 

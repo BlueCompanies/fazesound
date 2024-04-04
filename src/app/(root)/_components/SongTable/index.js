@@ -5,8 +5,9 @@ import Pages from "../Pagination/Pages";
 import { useEffect, useState } from "react";
 import { usePagination } from "@/app/_store";
 import Song from "../Song";
+import styles from "./styles.module.css";
 
-export default function SongTable({ query }) {
+export default function SongTable({ query, filteredByCategory }) {
   const { currentPage } = usePagination();
   const [songs, setSongs] = useState([]);
   const [songsQueryData, setSongsQueryData] = useState({});
@@ -14,25 +15,28 @@ export default function SongTable({ query }) {
   useEffect(() => {
     const getSongs = async () => {
       const isQuery = query === "" || query === undefined ? "" : query;
-      const data = await fetchSongs({ currentPage, query: isQuery });
+      const data = await fetchSongs({
+        currentPage,
+        query: isQuery,
+        filteredByCategory,
+      });
       const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
         data;
+      console.log(data);
       setSongsQueryData({ totalSongsPerQuery, totalPages });
       setSongs(totalSongsPerPage);
     };
 
     getSongs();
-  }, [currentPage]);
+  }, [currentPage, query]);
 
   return (
     <>
-      <Pages songsQueryData={songsQueryData} />
-      {songs.length > 0 &&
-        songs.map((song, index) => (
-          <div key={index}>
-            <Song song={song} />
-          </div>
-        ))}
+      <div className={styles.songsContainer}>
+        {songs?.length > 0 && songs.map((song) => <Song song={song} />)}
+        <Pages songsQueryData={songsQueryData} />
+        <div style={{ height: "100px" }}></div>
+      </div>
     </>
   );
 }
