@@ -22,7 +22,6 @@ export default function SongTable({ query, filteredByCategory }) {
       });
       const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
         data;
-      console.log(data);
       setSongsQueryData({ totalSongsPerQuery, totalPages });
       setSongs(totalSongsPerPage);
     };
@@ -34,7 +33,7 @@ export default function SongTable({ query, filteredByCategory }) {
     <>
       <div className={styles.songsContainer}>
         {songs?.length > 0 &&
-          songs.map((song) => <Song song={song} key={song} />)}
+          songs.map((song) => <Song song={song} key={song.audioId} />)}
         <Pages songsQueryData={songsQueryData} />
         <div style={{ height: "100px" }}></div>
       </div>

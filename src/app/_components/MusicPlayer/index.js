@@ -25,7 +25,6 @@ export default function MusicPlayer() {
     // Update the screenWidth state when the window is resized
     if (typeof window !== "undefined") {
       const handleResize = () => {
-        console.log(window.innerWidth);
         if (window.innerWidth <= 645) {
           setAudioSpectrumWidth(190);
         }
@@ -51,7 +50,6 @@ export default function MusicPlayer() {
   };
 
   const getCurrentSongTime = (currentTime) => {
-    console.log(currentTime);
     setCurrentAudioTime(currentTime);
   };
 

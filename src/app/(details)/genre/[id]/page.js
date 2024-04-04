@@ -2,7 +2,6 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import SongsByCategory from "./_components/SongsByCategory";
 import SongTable from "@/app/(root)/_components/SongTable";
 
 export default function Page() {

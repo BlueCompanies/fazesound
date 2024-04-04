@@ -156,7 +156,7 @@ export default async function Page(searchParams) {
           alignItems: "center",
         }}
       >
-        <div style={{ width: "70%", marginTop: "20px" }}>
+        <div style={{ width: "70%", marginTop: "200px" }}>
           <div>
             <p
               style={{ fontSize: "25px", fontWeight: 700, marginTop: "100px" }}

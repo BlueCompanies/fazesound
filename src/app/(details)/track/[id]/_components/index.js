@@ -21,12 +21,11 @@ const getSongsRecommendation = async () => {
 
 export default async function SongsRecommendation() {
   const { recommendedSongs } = await getSongsRecommendation();
-  console.log(recommendedSongs);
 
   return (
     <>
       {recommendedSongs.map((song) => (
-        <Song song={song} key={song} />
+        <Song song={song} key={song.audioId} />
       ))}
     </>
   );

@@ -20,7 +20,6 @@ export default function SongCover({ currentPlayedSongData, height, width }) {
 
   const playSongHandler = (e) => {
     e.preventDefault();
-    console.log(audio, cover, duration, name, ytLink, audioId);
     setCurrentSong({ audio, cover, duration, name, ytLink, audioId });
   };
 

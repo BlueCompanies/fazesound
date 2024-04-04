@@ -41,10 +41,6 @@ export default function Song({ song }) {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(audioSpectrumWidth);
-  }, [audioSpectrumWidth]);
-
   const songToolsHandler = () => {
     setSongTools(!songTools);
   };

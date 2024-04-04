@@ -10,9 +10,7 @@ import SearchSongBar from "./_components/Search";
 export const runtime = "edge";
 
 export default async function Page({ searchParams }) {
-  console.log("mrd", searchParams);
   const { query } = searchParams;
-  console.log(query);
   //const [playlist, setPlaylist] = useState([]);
   // const playListPanel = usePlayListHandler((state) => state.playListPanel);
 
@@ -146,7 +144,6 @@ export default async function Page({ searchParams }) {
           width={400}
           height={400}
           draggable={false}
-          objectFit="cover"
           style={{
             position: "absolute",
             right: 0,
