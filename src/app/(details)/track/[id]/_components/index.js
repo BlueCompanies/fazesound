@@ -26,7 +26,7 @@ export default async function SongsRecommendation() {
   return (
     <>
       {recommendedSongs.map((song) => (
-        <Song song={song} />
+        <Song song={song} key={song} />
       ))}
     </>
   );

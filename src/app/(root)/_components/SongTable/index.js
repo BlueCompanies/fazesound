@@ -33,7 +33,8 @@ export default function SongTable({ query, filteredByCategory }) {
   return (
     <>
       <div className={styles.songsContainer}>
-        {songs?.length > 0 && songs.map((song) => <Song song={song} />)}
+        {songs?.length > 0 &&
+          songs.map((song) => <Song song={song} key={song} />)}
         <Pages songsQueryData={songsQueryData} />
         <div style={{ height: "100px" }}></div>
       </div>
