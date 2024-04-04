@@ -12,6 +12,8 @@ import SongsRecommendation from "./_components";
 import AddToPlayList from "@/app/(root)/_components/Tools/AddToPlayList";
 import { GiDuration } from "react-icons/gi";
 
+export const runtime = "edge";
+
 const details = async (id) => {
   try {
     const response = await fetch(

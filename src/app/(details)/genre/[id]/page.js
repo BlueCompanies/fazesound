@@ -1,12 +1,9 @@
-"use client";
-
 import { useParams, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import SongTable from "@/app/(root)/_components/SongTable";
 
-export default function Page() {
-  const params = useParams();
-  const [songs, setSongs] = useState([]);
+export const runtime = "edge";
+
+export default function Page({ params }) {
   const { id } = params;
 
   return (
