@@ -21,7 +21,7 @@ export default function SongTable({ query, filteredByCategory }) {
         filteredByCategory,
       });
       const { totalSongsPerPage, totalSongsPerQuery, totalSongs, totalPages } =
-        data;
+        data || "";
       setSongsQueryData({ totalSongsPerQuery, totalPages });
       setSongs(totalSongsPerPage);
     };

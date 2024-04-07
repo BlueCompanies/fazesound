@@ -171,6 +171,7 @@ export default function MusicPlayer() {
                 songData={{
                   audio: audio,
                   audioId: audioId,
+                  songName: name,
                 }}
                 isPlaying={isPlaying}
                 isMainSong={true}

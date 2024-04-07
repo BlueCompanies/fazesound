@@ -8,7 +8,7 @@ export default function Page({ params }) {
 
   return (
     <>
-      <div style={{ marginTop: "70px" }}>
+      <div style={{ marginTop: "70px", background: "#dedede" }}>
         <div
           style={{
             width: "100%",

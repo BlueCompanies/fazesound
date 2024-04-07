@@ -17,7 +17,6 @@ export default async function SongsCategories({ searchParams }) {
           justifyContent: "center",
           marginBottom: "100px",
           background: "#515151",
-          height: "100vh",
         }}
       >
         <SongCategory

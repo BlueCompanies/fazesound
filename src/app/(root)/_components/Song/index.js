@@ -96,6 +96,7 @@ export default function Song({ song }) {
               songData={{
                 audio: song?.audioFile,
                 audioId: song?.audioId,
+                songName: song.name,
               }}
               isMainSong={false}
               key={song.audioFile}

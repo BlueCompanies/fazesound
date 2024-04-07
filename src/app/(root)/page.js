@@ -154,8 +154,7 @@ export default async function Page({ searchParams }) {
 
       <div
         style={{
-          background: "#fff",
-          height: "100vh",
+          background: "#dedede",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

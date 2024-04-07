@@ -11,7 +11,7 @@ export default function WaveVisualizer({
   isPlaying,
   getCurrentSongTime,
 }) {
-  const { audio, audioId } = songData || {};
+  const { audio, audioId, songName } = songData || {};
   const [waveSurfer, setWaveSurfer] = useState(null);
   const waveformRef = useRef(null);
   const [currentFormatedTime, setCurrentFormatedTime] = useState("00:00");
@@ -73,11 +73,26 @@ export default function WaveVisualizer({
             waveSurfer.load(audio, peaks.data);
           }
         })
-        .catch((e) => {
-          console.error("error", e);
+        .catch(() => {
+          // If the first fetch fails, try the second URL
+          fetch(
+            `https://fazestore.online/music/${audioId}-${songName}/output.json`
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+              }
+              return response.json();
+            })
+            .then((peaks) => {
+              if (waveSurfer) {
+                waveSurfer.load(audio, peaks.data);
+              }
+            })
+            .catch(() => {}); // Add an empty catch block here
         });
     }
-  }, [waveSurfer, audio]);
+  }, [waveSurfer, audio, audioId, songName]);
 
   // sets the currentFormatedTime if formattedTime is different, so it updates the state
   // then, in the second useEffect we call the function with the updated state, so we dont call it multiple times

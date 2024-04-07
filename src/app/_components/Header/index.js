@@ -1,15 +1,17 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { usePlayListHandler } from "@/app/_store";
+import { useCurrentSong, usePlayListHandler } from "@/app/_store";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaYoutube } from "react-icons/fa";
 import styles from "./styles.module.css";
+import { FaLightbulb } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
 
 export default function Header() {
   const [showChannels, setShowChannels] = useState(false);
-  const pathname = usePathname();
+  const { setCurrentSong } = useCurrentSong();
   const { replace } = useRouter();
 
   const setPlayListPanel = usePlayListHandler(
@@ -28,6 +30,10 @@ export default function Header() {
 
   const openYtChannels = () => {
     setShowChannels(!showChannels);
+  };
+
+  const resetVariables = () => {
+    setCurrentSong({});
   };
 
   return (
@@ -245,6 +251,52 @@ export default function Header() {
         onClick={homeHandler}
         style={{ cursor: "pointer" }}
       ></img>
+
+      <div
+        style={{
+          position: "absolute",
+          right: 0,
+          margin: "40px",
+          borderRadius: "4px",
+          width: "20%",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link
+          style={{
+            padding: "15px",
+            borderRadius: "4px",
+            background: "#000",
+            color: "#fff",
+            cursor: "pointer",
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          href="/how-it-works"
+        >
+          <IoSettingsSharp style={{ marginRight: "5px" }} />
+          HOW IT WORKS
+        </Link>
+        <Link
+          style={{
+            padding: "15px",
+            borderRadius: "4px",
+            background: "#000",
+            color: "#fff",
+            cursor: "pointer",
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          onClick={resetVariables}
+          href="/blog"
+        >
+          <FaLightbulb style={{ marginRight: "5px" }} />
+          LEARN
+        </Link>
+      </div>
     </header>
   );
 }

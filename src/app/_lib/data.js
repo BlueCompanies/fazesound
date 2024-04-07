@@ -31,7 +31,7 @@ export default async function fetchSongs({
 
   try {
     const response = await fetch(
-      `https://us-east-1.aws.data.mongodb-api.com/app/data-oohbz/endpoint/getAllSongs?ms=${Date.now()}`,
+      `https://us-east-1.aws.data.mongodb-api.com/app/data-oohbz/endpoint/getAllSongs`,
       {
         method: "POST",
         headers: {

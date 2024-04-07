@@ -19,15 +19,15 @@ export default function Page() {
     artist: "FazeSound",
     composer: "FazeSound",
     tags: [],
-    instruments: [],
+    instruments: [], // should be put as empty array
     audioData: {
       bpm: 120,
       key: "",
       altkey: "",
       duration: { minutes: "", seconds: "" },
     },
-    license: "white",
-    isPublic: "true",
+    license: "white", // should be put as default
+    isPublic: "true", // should be put as default
   });
 
   const pw = process.env.NEXT_PUBLIC_JSONCOPYPW;
@@ -90,14 +90,14 @@ export default function Page() {
     setJsonObj((prevState) => ({
       ...prevState,
       audioFile: `https://fazestore.online/music/${newId}/audio.mp3`,
-      cover: `https://fazestore.online/music/${newId}/thumbnail.jpg`,
+      cover: `https://fazestore.online/music/${newId}/thumbnail.webp`,
       audioId: newId,
       audioWave: `https://fazestore.online/audiowaves/${newId}-output.json`,
     }));
   }, []);
 
   return (
-    <>
+    <div style={{ marginTop: "70px", height: "100vh" }}>
       <input type="text" onChange={updateTextValue} value={inputText} />
       <button type="button" onClick={sendPw}>
         Validate
@@ -218,6 +218,6 @@ export default function Page() {
           <pre>{JSON.stringify(jsonObj, null, 2)}</pre>
         </div>
       )}
-    </>
+    </div>
   );
 }

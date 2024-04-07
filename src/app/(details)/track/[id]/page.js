@@ -49,6 +49,7 @@ export default async function Page(searchParams) {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          backgroundColor: "#dedede",
         }}
       >
         <div
@@ -124,6 +125,7 @@ export default async function Page(searchParams) {
                 songData={{
                   audio: trackDetails?.audioFile,
                   audioId: trackDetails?.audioId,
+                  songName: trackDetails.name,
                 }}
                 isMainSong={false}
                 key={trackDetails.audioFile}
@@ -156,6 +158,7 @@ export default async function Page(searchParams) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          background: "#dedede",
         }}
       >
         <div style={{ width: "70%", marginTop: "200px" }}>
@@ -194,7 +197,7 @@ export default async function Page(searchParams) {
             </div>
           </div>
 
-          <div>
+          <div style={{ marginTop: "20px" }}>
             <p style={{ fontSize: "25px", fontWeight: 700 }}>GENRE</p>
             <div
               style={{
@@ -358,7 +361,7 @@ export default async function Page(searchParams) {
           <SongsRecommendation />
         </div>
       </div>
-      <div style={{ height: "200px" }}></div>
+      <div style={{ height: "200px", background: "#dedede" }}></div>
     </>
   );
 }
