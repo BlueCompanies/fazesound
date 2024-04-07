@@ -90,7 +90,7 @@ export default function Page() {
           </div>
 
           <div style={{ marginTop: "8px" }}>
-            <h2 style={{ fontWeight: 700 }}>Children's Privacy</h2>
+            <h2 style={{ fontWeight: 700 }}>Children&apos;s Privacy</h2>
             <p>
               We implement reasonable security measures to protect the
               information we collect from unauthorized access, disclosure,
