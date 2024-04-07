@@ -14,7 +14,7 @@ export default async function fetchSongs({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ genre, currentPage: 1 }),
+          body: JSON.stringify({ genre, currentPage }),
         }
       );
 

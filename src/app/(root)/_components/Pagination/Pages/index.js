@@ -9,6 +9,7 @@ export default function Pages({ songsQueryData, songs }) {
   const { currentPage, setCurrentPage } = usePagination();
   const [pageNumbers, setPageNumbers] = useState([]);
   const manualPaginationHandler = (page) => {
+    console.log(page);
     setCurrentPage(page);
   };
 
