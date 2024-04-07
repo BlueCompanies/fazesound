@@ -142,45 +142,39 @@ export default function Page() {
             arising out of or related to your use of the Services or the
             AI-generated music.
           </p>
-          <h2 style={{ fontWeight: 700, marginTop: "8px" }}>9. License</h2>{" "}
+          <h2 style={{ fontWeight: 700, marginTop: "8px" }}>9. License</h2>
           <p style={{ marginTop: "8px" }}>
-            {" "}
             All music published on FazeSound.com is licensed under the
             &quot;White License,&quot; which grants broad rights for the use,
             modification, and distribution of the AI-generated musical works,
             both for commercial and non-commercial purposes, solely for your own
-            projects.{" "}
-          </p>{" "}
+            projects.
+          </p>
           <p style={{ marginTop: "8px" }}>
-            {" "}
             Under the White License, you are granted a worldwide, non-exclusive,
             royalty-free, perpetual, and irrevocable license to exercise the
-            following rights over the AI-generated music:{" "}
-          </p>{" "}
+            following rights over the AI-generated music:
+          </p>
           <ul style={{ marginLeft: "40px" }}>
-            {" "}
             <li style={{ marginTop: "8px" }}>
-              {" "}
               Use, reproduce, modify, prepare derivative works of, publicly
               display, publicly perform, and distribute the AI-generated music,
               in whole or in part, for any purpose, including commercial
-              projects of your own.{" "}
-            </li>{" "}
-          </ul>{" "}
+              projects of your own.
+            </li>
+          </ul>
           <p style={{ marginTop: "8px" }}>
-            {" "}
             However, you are not permitted to resell or sublicense the
             AI-generated music to third parties. The White License grants you
             the rights to use the music solely for your own projects and not for
-            redistribution or licensing to others.{" "}
-          </p>{" "}
+            redistribution or licensing to others.
+          </p>
           <p style={{ marginTop: "8px" }}>
-            {" "}
             The White License effectively places the AI-generated music in the
             public domain for your own use, allowing for unrestricted use,
             modification, and distribution in your projects, subject only to the
             restrictions outlined in these Terms of Service, including the
-            prohibition on reselling or sublicensing the music.{" "}
+            prohibition on reselling or sublicensing the music.
           </p>
           <h2 style={{ fontWeight: 700, marginTop: "8px" }}>
             10. Modifications
