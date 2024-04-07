@@ -14,10 +14,11 @@ export default function Page() {
           <p style={{ marginTop: "8px" }}>
             Welcome to FazeSound, a platform that provides free,
             artificially-generated music for personal and commercial use without
-            copyright restrictions. These Terms of Service ("Terms") govern your
-            use of the website fazesound.com and the services provided through
-            it (collectively, the "Services"). By accessing or using the
-            Services, you agree to be bound by these Terms.
+            copyright restrictions. These Terms of Service (&quot;Terms&quot;)
+            govern your use of the website fazesound.com and the services
+            provided through it (collectively, the &quot;Services&quot;). By
+            accessing or using the Services, you agree to be bound by these
+            Terms.
           </p>
           <h2 style={{ fontWeight: 700, marginTop: "8px" }}>
             1. About the Services
@@ -126,10 +127,11 @@ export default function Page() {
             7. Disclaimer of Warranties
           </h2>
           <p style={{ marginTop: "8px" }}>
-            The Services and the AI-generated music are provided "as is" and "as
-            available" without warranties of any kind, express or implied,
-            including but not limited to warranties of merchantability, fitness
-            for a particular purpose, and non-infringement.
+            The Services and the AI-generated music are provided &quot;as
+            is&quot; and &quot;as available&quot; without warranties of any
+            kind, express or implied, including but not limited to warranties of
+            merchantability, fitness for a particular purpose, and
+            non-infringement.
           </p>
           <h2 style={{ fontWeight: 700, marginTop: "8px" }}>
             8. Limitation of Liability
@@ -143,10 +145,11 @@ export default function Page() {
           <h2 style={{ fontWeight: 700, marginTop: "8px" }}>9. License</h2>{" "}
           <p style={{ marginTop: "8px" }}>
             {" "}
-            All music published on FazeSound.com is licensed under the "White
-            License," which grants broad rights for the use, modification, and
-            distribution of the AI-generated musical works, both for commercial
-            and non-commercial purposes, solely for your own projects.{" "}
+            All music published on FazeSound.com is licensed under the
+            &quot;White License,&quot; which grants broad rights for the use,
+            modification, and distribution of the AI-generated musical works,
+            both for commercial and non-commercial purposes, solely for your own
+            projects.{" "}
           </p>{" "}
           <p style={{ marginTop: "8px" }}>
             {" "}

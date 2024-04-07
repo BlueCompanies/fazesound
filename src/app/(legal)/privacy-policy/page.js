@@ -13,18 +13,19 @@ export default function Page() {
         >
           <h1 style={{ fontSize: "26px" }}>Privacy Policy</h1>
           <p style={{ marginTop: "8px" }}>
-            This Privacy Policy explains how FazeSound ("we", "us" or "our")
-            collects, uses, and discloses information about you when you access
-            or use our website at fazesound.com and the services we provide
-            through it (collectively, the "Services").
+            This Privacy Policy explains how FazeSound (&quot;we&quot;,
+            &quot;us&quot; or &quot;our&quot;) collects, uses, and discloses
+            information about you when you access or use our website at
+            fazesound.com and the services we provide through it (collectively,
+            the &quot;Services&quot;).
           </p>
 
           <div style={{ marginTop: "8px" }}>
             <h2 style={{ fontWeight: 700 }}>Information We Collect</h2>
             <p>
-              We may collect information that identifies you ("Personal
-              Information") as well as other information that does not directly
-              identify you.
+              We may collect information that identifies you (&quot;Personal
+              Information&quot;) as well as other information that does not
+              directly identify you.
             </p>
           </div>
 
