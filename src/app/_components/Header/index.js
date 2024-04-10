@@ -256,9 +256,8 @@ export default function Header() {
         style={{
           position: "absolute",
           right: 0,
-          margin: "40px",
+          margin: "20px",
           borderRadius: "4px",
-          width: "20%",
           display: "flex",
           justifyContent: "space-around",
         }}
