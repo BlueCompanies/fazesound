@@ -279,6 +279,7 @@ export default function Header() {
           <IoSettingsSharp style={{ marginRight: "5px" }} />
           HOW IT WORKS
         </Link>
+        {/*
         <Link
           style={{
             padding: "15px",
@@ -296,6 +297,7 @@ export default function Header() {
           <FaLightbulb style={{ marginRight: "5px" }} />
           LEARN
         </Link>
+         */}
       </div>
     </header>
   );
